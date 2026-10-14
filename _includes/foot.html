@@ -1,12 +1,24 @@
+<!-- Pre-calculate the library asset path once to fix the filter conflict -->
+{% assign lib_path = site.lib-assets | default: '/assets/lib' | relative_url %}
+
 <!-- Bootstrap bundle JS -->
-<script src="{{ site.lib-assets | default: '/assets/lib' | relative_url }}/bootstrap.bundle.min.js"></script>
+<script src="{{ lib_path }}/bootstrap.bundle.min.js"></script>
+
 <!-- load other js -->
-<script src="{{ site.lib-assets | default: '/assets/lib' | relative_url }}/lazysizes.min.js" async></script>
-{% if layout.gallery == true or page.gallery == true %}<script src="{{ site.lib-assets | default: '/assets/lib' | relative_url }}/spotlight.bundle.js" defer></script>{% endif %}
+<script src="{{ lib_path }}/lazysizes.min.js" async></script>
+
+{% if layout.gallery == true or page.gallery == true %}
+<script src="{{ lib_path }}/spotlight.bundle.js" defer></script>
+{% endif %}
+
 {% if page.custom-foot or layout.custom-foot %}
-{%- assign page_feet = page.custom-foot | split: ";" -%}
-{%- assign layout_feet = layout.custom-foot | split: ";" -%}
-{%- assign feet = page_feet | concat: layout_feet -%}
-{% for f in feet %}{% include {{ f }} %}
-{% endfor %}
+  {%- assign page_feet = page.custom-foot | split: ";" -%}
+  {%- assign layout_feet = layout.custom-foot | split: ";" -%}
+  {%- assign feet = page_feet | concat: layout_feet -%}
+
+  {% for f in feet %}
+    {%- comment -%} FIXED: Removed the nested {{ }} brackets {%- endcomment -%}
+    {% include f %}
+  {% endfor %}
 {%- endif -%}
+
