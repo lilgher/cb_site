@@ -50,11 +50,11 @@ metadata: cb_csv_metadata
 #
 # Enter name and link for your organization (replacing the name and links below)
 # These values will be used in attribution and data 
-organization-name: 
-organization-link: 
+#organization-name: 
+#organization-link: 
 # Add logo image links if you would like them to appear in banner and footer. Delete or leave blank to remove logos.
-organization-logo-banner: 
-organization-logo-nav: 
+#organization-logo-banner: 
+#organization-logo-nav: 
 
 ##########
 # ROBOTS EXCLUDE
